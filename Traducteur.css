@@ -1,0 +1,130 @@
+#prononciation {
+  background-color: rgb(134, 227, 243);
+  color: darkgoldenrod;
+  text-decoration: none;
+  border-radius: 50px;
+  border: 0.5px solid black;
+  font-size: 30px;
+  cursor: grab;
+  margin: 2rem 0 2rem 2rem;
+  padding: 0.7rem;
+}
+
+#prononciation:hover {
+  color: rgb(0, 0, 0);
+  background-color: grey;
+}
+
+div {
+  display: flex;
+}
+
+ul {
+  list-style: unset;
+  list-style-type: square;
+}
+p {
+  font-weight: bold;
+  color: violet;
+  text-decoration: overline underline;
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  background-color: rgb(234, 148, 148);
+  text-align: center;
+  font-weight: bold;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+section {
+  width: 75vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+input {
+  height: 25px;
+  width: 300px;
+  border: 10px ridge rgb(222, 161, 161);
+}
+
+span {
+  align-items: flex-end;
+  font-size: 50px;
+  color: sienna;
+  margin-top: 2rem;
+}
+
+/* button traduction */
+.traduction {
+  height: 25px;
+  width: 320px;
+  border-radius: 50%;
+  border: 0.5px solid black;
+  background-color: pink;
+  margin-top: 15px;
+  font-size: 20px;
+  cursor: grab;
+}
+
+.list-prononciation {
+  width: 25vw;
+  padding-left: 2rem;
+}
+
+.list--hidden {
+  visibility: hidden;
+}
+
+.list-prononciation--on {
+  display: block;
+}
+
+/* formulaire */
+#translatorFrAls {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  margin-bottom: 2rem;
+  font-weight: bold;
+  font-size: 30px;
+  font-style: italic;
+  color: rgb(254, 154, 117);
+  animation: neon 5s ease infinite;
+}
+
+input[type="text"] {
+  width: 30%;
+  -webkit-transition: width 0.15s ease-in-out;
+  transition: width 0.15s ease-in-out;
+}
+
+/* When the input field gets focus,
+    change its width to 100% */
+input[type="text"]:focus {
+  width: 70%;
+}
+
+.list-prononciation {
+  display: list-item;
+}
+
+@keyframes neon {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgb(128, 131, 245), 0 0 30px cyan, 0 0 50px blue,
+      0 0 70px #fa1c16, 0 0 50px #fed128, 5px 5px 5px yellowgreen;
+    color: #fed128 turquoise;
+  }
+  50% {
+    text-shadow: 0 0 5px #ec3f39, 0 0 15px green, 0 0 20px lightcoral,
+      0 0 10px #800e0b, 0 0 10px black, 15px 15px 10px pink;
+    color: #09b8b8;
+  }
+}
