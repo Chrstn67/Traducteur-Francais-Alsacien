@@ -25,7 +25,7 @@ const handleSubmit = function (event) {
 // On rajoute l'event sur l'envoi du formulaire
 form.addEventListener("submit", handleSubmit);
 
-let traduction = {
+const traduction = {
   bonjour: "Bùschùr (Guete Morje)",
   bonsoir: "Guete'n Owe",
   salut: "Salü",
@@ -35,7 +35,50 @@ let traduction = {
   "au revoir": "O revoir",
   "à tout de suite": "Bis glich",
   "à toute à l'heure": "Bis noochhärde",
+  "à plus tard": "Bis später",
+  "à la prochaine": "Bis's nächscht Mol",
+  "bonne journée": "Gueter Dàà",
+  "bonne nuit": "Guet Nàcht",
+  "tout le monde": "bisàmme",
 };
+
+// tu récupères la section
+const section = document.querySelector("#filtre");
+// tu crées une fonction qui va boucler sur les clés du tableau et afficher les traductions
+const displayTranslations = (translations) => {
+  // tu vides la section
+  section.innerHTML = "";
+  // tu boucles sur les clés du tableau et tu affiches les traductions
+  for (const key in translations) {
+    const div = document.createElement("div");
+    div.textContent = `${key} : ${traduction[key]}`;
+    section.appendChild(div);
+  }
+};
+
+// tu appelles la fonction pour afficher les traductions
+displayTranslations(traduction);
+
+// tu récupères le champ de recherche
+const input = document.querySelector("input");
+// input = input.toLowerCase();
+// tu écoutes l'événement input
+input.addEventListener("input", (event) => {
+  // tu récupères la valeur de l'input
+  const value = event.target.value;
+
+  // tu clones tes traductions pour ne pas modifier le tableau original
+  const filtered = { ...traduction };
+  // tu filtres les clés du tableau en fonction de la valeur de l'input
+  for (const key in traduction) {
+    if (!key.includes(value)) {
+      delete filtered[key];
+    }
+  }
+
+  // tu utilises la fonction
+  displayTranslations(filtered);
+});
 
 // Tableau prononciation
 const boardPrononciation = {
@@ -57,22 +100,21 @@ const boardPrononciation = {
 
 boardPrononciation.init();
 
-// barre de recherche à adapter:
-// https://stacklima.com/barre-de-recherche-utilisant-html-css-et-javascript/
+// // barre de recherche à adapter:
+// // https://stacklima.com/barre-de-recherche-utilisant-html-css-et-javascript/
 
-const search_word = function keyup() {
-  let input = document.getElementById("translator_input").value;
-  input = input.toLowerCase();
-  let x = document.getElementsByClassName("list-proposition");
+// const search_word = function keyup() {
+//   let input = document.getElementById("translator_input").value;
+//   input = input.toLowerCase();
+//   let x = document.getElementsByClassName("list-proposition");
 
-  for (i = 0; i < x.length; i++) {
-    if (!x[i].innerHTML.toLowerCase().includes(input)) {
-      x[i].style.display = "none";
-    } else {
-      x[i].style.display = "list-item";
-    }
-  }
-};
+//   for (i = 0; i < x.length; i++) {
+//     if (!x[i].innerHTML.toLowerCase().includes(input)) {
+//       x[i].style.display = "none";
+//     } else {
+//       x[i].style.display = "list-item";
+//     }
+//   }
+// };
 
-search_word();
-
+// search_word();
