@@ -115,8 +115,8 @@ boardPrononciation.init();
 // Bouton infos
 const btnInfos = {
   init: function () {
-    btnInfos.btnPrononciation = document.querySelector(".infos");
-    btnInfos.btnPrononciation.addEventListener("click", btnInfos.handleClick);
+    btnInfos.buttonInfos = document.querySelector(".infos");
+    btnInfos.buttonInfos.addEventListener("click", btnInfos.handleClick);
   },
   handleClick: function (event) {
     event.preventDefault();
