@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="Traducteur.css" />
+
+    <title>Traducteur Français-Alsacien</title>
+  </head>
+  <body>
+    <header>
+      <h1>Traducteur Français-Alsacien</h1>
+      <button class="infos">Infos</button>
+      <p class="infos-Als infos-Als--hidden">
+        L'alsacien est un dialecte dérivant de l'allemand. Il est parlé par plus
+        de 600 000 personnes, surtout par les personnes ayant connu la Seconde
+        Guerre Mondiale. L'alsacien se parle plus qu'on ne le lit ou l'écrit car
+        il n'existe que très peu de publications dans ce dialecte. De plus, il
+        existe énormément de variantes, car l'alacien du Bas-Rhin est différent
+        de celui du Haut-Rhin, de même que l'alsacien d'un village peut être
+        légèrement différent du village voisin. Malgré tout, tous les locuteurs
+        alsaciens se comprennent ! <br />
+        Pour plus d'infos :
+        <a href="https://fr.wikipedia.org/wiki/Alsacien" target="_blank"
+          >Alsacien</a
+        >
+      </p>
+    </header>
+    <button type="button" id="prononciation">Prononciation</button>
+    <div>
+      <aside class="list-prononciation">
+        <ul class="list--hidden">
+          <p>VOYELLES</p>
+          <li>a ou aa => a</li>
+          <li>à ou àà => o ouvert</li>
+          <li>ä ou ää => ai</li>
+          <li>é ou éé => é</li>
+          <li>i => ie</li>
+          <li>ì => entre 'é' et 'i'</li>
+          <li>o ou oo => o fermé</li>
+          <li>ö ou öö => eu</li>
+          <li>ù => entre 'ou' et 'on'</li>
+          <li>ü o üü => u</li>
+          <p>DIPHTONGUES</p>
+          <li>ai => aïe</li>
+          <li>au => aou</li>
+          <li>äu => oeil</li>
+          <li>ei => aïl</li>
+          <li>ej => éyi</li>
+          <li>ue ou üe => euh</li>
+          <li>ch => ch, mais 'r' dur après a, à, o, ù</li>
+          <p>CONSONNES</p>
+          <li>h => expiré</li>
+          <li>j => y</li>
+          <li>qu => k</li>
+          <li>s => ss</li>
+          <li>sch => sch (schéma)</li>
+          <li>sp => ch'p</li>
+          <li>st => ch't</li>
+          <li>v => f</li>
+          <li>w => v</li>
+          <li>z => ts</li>
+        </ul>
+      </aside>
+
+      <section>
+        <h2>Écrivez votre texte ici</h2>
+        <form id="translatorFrAls">
+          <input
+            type="text"
+            name="translatorFr"
+            id="translator_input"
+            placeholder="Français"
+          />
+          <button class="traduction" type="submit">Traduire</button>
+        </form>
+        <span id="resultAls"></span>
+        <section id="filtre"></section>
+      </section>
+    </div>
+
+    <script src="Traducteur.js"></script>
+  </body>
+</html>
