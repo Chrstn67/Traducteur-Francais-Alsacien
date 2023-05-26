@@ -1,6 +1,7 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #000000;
+  background-color: #616161;
+  margin: 1em;
 }
 
 header {
@@ -117,9 +118,9 @@ span#resultAls {
 }
 
 section#filtre {
-  background-color: rgba(255, 211, 211, 0.486);
+  background-color: #f8f8f8;
+  color: #8a0202;
   font-size: 0.9em;
   padding: 2rem;
   margin: 2rem 0rem 0rem 0rem;
-  color: #ebebeb;
 }
