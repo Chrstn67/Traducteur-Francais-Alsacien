@@ -1,108 +1,122 @@
 const traduction = {
-  bonjour: "Bùschùr (Guete Morje)",
-  bonsoir: "Guete'n Owe",
-  salut: "Salü",
-  merci: "Merci",
+  Bonjour: "Bùschùr (Guete Morje)",
+  Bonsoir: "Guete'n Owe",
+  Salut: "Salü",
+  Merci: "Merci",
   prénom: "Vornàmme",
   nom: "Nàmme",
   "nom de famille": "Fàmilienàmme",
-  "merci beaucoup": "Merci vielmols",
-  "bon après-midi": "Gueter middàà",
-  "au revoir": "O revoir",
+  "Merci beaucoup": "Merci vielmols",
+  "Bon après-midi": "Gueter middàà",
+  "Au revoir": "O revoir",
   "à tout de suite": "Bis glich",
   "à toute à l'heure": "Bis noochhärde",
   "à plus tard": "Bis später",
   "à la prochaine": "Bis's nächscht Mol",
-  "bonne journée": "Gueter Dàà",
-  "bonne nuit": "Guet Nàcht",
+  "Bonne journée": "Gueter Dàà",
+  "Bonne nuit": "Guet Nàcht",
   "tout le monde": "bisàmme",
+  "à tous": "bisàmme",
   "faire connaissance": "sich kännelehere",
-  "comment t'appelles-tu ?": "Wie heisch dü ?",
-  "je m'appelle...": "Ìch heiss...",
-  "et toi ?": "ùn dü ?",
-  "quel est ton nom ?": "Wie ìsch diner Nàmme ?",
-  "quel est votre prénom ?": "Wie ìsch diner Vornàmme ?",
-  "mon nom est...": "Minner nàmme ìsch",
-  "mon prénom est...": "Minner vornàmmer ìsch",
+  "Comment t'appelles-tu ?": "Wie heisch dü ?",
+  "Je m'appelle": "Ìch heiss",
+  "et toi": "ùn dü ?",
+  "Quel est ton nom": "Wie ìsch diner Nàmme ?",
+  "Quel est votre prénom": "Wie ìsch diner Vornàmme ?",
+  "Mon nom est": "Minner nàmme ìsch",
+  "Mon prénom est": "Minner vornàmmer ìsch",
 };
 
-// On crée une fonction pour gérer le submit
 const handleSubmit = function (event) {
-  // ATTENTION PREVENT DEFAULT ULTRA IMPORTANT SINON RECHARGEMENT DE PAGE
   event.preventDefault();
-  let input;
-  input = document.querySelector("#translator_input").value;
-  input = input.toLowerCase();
-  console.log(input);
+
+  const input = document.querySelector("#translator_input").value;
+  const result = document.querySelector("#resultAls");
+
   if (input === "") {
-    const result = document.querySelector("#resultAls");
     result.innerHTML = "Veuillez entrer ce que vous souhaitez traduire";
-  }
-  // hasOwnProperty vérifie si la propriété existe dans un objet
-  else if (traduction.hasOwnProperty(input)) {
-    const result = document.querySelector("#resultAls");
-    result.innerHTML = traduction[input];
   } else {
-    const result = document.querySelector("#resultAls");
-    result.innerHTML = "Mot ou expression inconnu(e) au bataillon...";
+    const translatedPhrases = [];
+
+    let remainingInput = input.toLowerCase();
+    let foundMatch = true;
+
+    while (remainingInput.length > 0 && foundMatch) {
+      foundMatch = false;
+
+      for (const key in traduction) {
+        if (remainingInput.startsWith(key.toLowerCase())) {
+          translatedPhrases.push(traduction[key]);
+          remainingInput = remainingInput.slice(key.length).trim();
+          foundMatch = true;
+          break;
+        }
+      }
+
+      if (!foundMatch) {
+        const words = remainingInput.split(" ");
+        const firstWord = words[0];
+
+        if (traduction.hasOwnProperty(firstWord)) {
+          translatedPhrases.push(traduction[firstWord]);
+          remainingInput = remainingInput.slice(firstWord.length).trim();
+          foundMatch = true;
+        }
+      }
+    }
+
+    if (translatedPhrases.length > 0) {
+      const translatedSentence = translatedPhrases.join(" ");
+      result.innerHTML = translatedSentence;
+    } else {
+      result.innerHTML =
+        "Mot ou expression inconnu(e) au bataillon... Pour l'instant &#128521;";
+    }
   }
 };
 
-// On récupère nos éléments
 const form = document.querySelector("form");
-// On rajoute l'event sur l'envoi du formulaire
 form.addEventListener("submit", handleSubmit);
 
-// tu récupères la section
 const section = document.querySelector("#filtre");
-// tu crées une fonction qui va boucler sur les clés du tableau et afficher les traductions
 const displayTranslations = (translations) => {
-  // tu vides la section
   section.innerHTML = "";
   let i = 0;
-  // tu boucles sur les clés du tableau et tu affiches les traductions
+
   for (const key in translations) {
     const div = document.createElement("div");
-    div.textContent = `${key} : ${traduction[key]}`;
+    div.textContent = `${key} : ${translations[key]}`;
     section.appendChild(div);
-    i = i + 1;
+    i++;
+
     if (i === 7) {
       break;
     }
   }
 };
 
-// tu appelles la fonction pour afficher les traductions
-
-// tu récupères le champ de recherche
 const input = document.querySelector("input");
-// tu écoutes l'événement input
 input.addEventListener("input", (event) => {
-  // tu récupères la valeur de l'input
   const value = event.target.value;
+  const filtered = {};
 
-  // tu clones tes traductions pour ne pas modifier le tableau original
-  const filtered = { ...traduction };
-  // tu filtres les clés du tableau en fonction de la valeur de l'input
   for (const key in traduction) {
-    if (!key.includes(value)) {
-      delete filtered[key];
+    if (key.toLowerCase().includes(value.toLowerCase())) {
+      filtered[key] = traduction[key];
     }
   }
-  // tu utilises la fonction
+
   displayTranslations(filtered);
 });
 
-// Tableau prononciation
 const boardPrononciation = {
+  btnPrononciation: null,
+
   init: function () {
-    boardPrononciation.btnPrononciation =
-      document.querySelector("#prononciation");
-    boardPrononciation.btnPrononciation.addEventListener(
-      "click",
-      boardPrononciation.handleClick
-    );
+    this.btnPrononciation = document.querySelector("#prononciation");
+    this.btnPrononciation.addEventListener("click", this.handleClick);
   },
+
   handleClick: function (event) {
     event.preventDefault();
     const asideElem = document.querySelector("ul");
@@ -112,12 +126,14 @@ const boardPrononciation = {
 
 boardPrononciation.init();
 
-// Bouton infos
 const btnInfos = {
+  buttonInfos: null,
+
   init: function () {
-    btnInfos.buttonInfos = document.querySelector(".infos");
-    btnInfos.buttonInfos.addEventListener("click", btnInfos.handleClick);
+    this.buttonInfos = document.querySelector(".infos");
+    this.buttonInfos.addEventListener("click", this.handleClick);
   },
+
   handleClick: function (event) {
     event.preventDefault();
     const pElem = document.querySelector("p");
