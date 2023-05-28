@@ -1,30 +1,34 @@
 const traduction = {
-  Bonjour: "Bùschùr (Guete Morje)",
-  Bonsoir: "Guete'n Owe",
-  Salut: "Salü",
-  Merci: "Merci",
-  prénom: "Vornàmme",
-  nom: "Nàmme",
-  "nom de famille": "Fàmilienàmme",
-  "Merci beaucoup": "Merci vielmols",
-  "Bon après-midi": "Gueter middàà",
-  "Au revoir": "O revoir",
+  bonjour: "Bùschùr (Guete Morje)",
+  bonsoir: "Guete'n Owe",
+  salut: "Salü",
+  merci: "Merci",
+  prénom: "vornàmme",
+  nom: "nàmme",
+  "nom de famille": "fàmilienàmme",
+  "merci beaucoup": "Merci vielmols",
+  "bon après-midi": "Gueter middàà",
+  "au revoir": "O revoir",
   "à tout de suite": "Bis glich",
   "à toute à l'heure": "Bis noochhärde",
   "à plus tard": "Bis später",
   "à la prochaine": "Bis's nächscht Mol",
-  "Bonne journée": "Gueter Dàà",
-  "Bonne nuit": "Guet Nàcht",
+  "bonne journée": "Gueter Dàà",
+  "bonne nuit": "Guet Nàcht",
   "tout le monde": "bisàmme",
   "à tous": "bisàmme",
   "faire connaissance": "sich kännelehere",
-  "Comment t'appelles-tu ?": "Wie heisch dü ?",
-  "Je m'appelle": "Ìch heiss",
+  "comment t'appelles-tu": "Wie heisch dü ?",
+  "je m'appelle": "Ìch heiss",
   "et toi": "ùn dü ?",
-  "Quel est ton nom": "Wie ìsch diner Nàmme ?",
-  "Quel est votre prénom": "Wie ìsch diner Vornàmme ?",
-  "Mon nom est": "Minner nàmme ìsch",
-  "Mon prénom est": "Minner vornàmmer ìsch",
+  "quel est ton nom": "Wie ìsch diner Nàmme ?",
+  "quel est votre prénom": "Wie ìsch diner Vornàmme ?",
+  "mon nom est": "Minner nàmme ìsch",
+  "mon prénom est": "Minner vornàmmer ìsch",
+  enchanté: "Es frajt mich !",
+  enchantée: "Es frajt mich !",
+  "où habites-tu": "Wo wohnsch dü ?",
+  "j'habite à": "Ìch whon ìn",
 };
 
 const handleSubmit = function (event) {
@@ -70,7 +74,10 @@ const handleSubmit = function (event) {
       result.innerHTML = translatedSentence;
     } else {
       result.innerHTML =
-        "Mot ou expression inconnu(e) au bataillon... Pour l'instant &#128521;";
+        "Mot ou expression inconnu(e) au bataillon... Pour l'instant &#128521;" +
+        "<br>" +
+        " " +
+        "Mais vérifie l'orthographe quand même &#128527;";
     }
   }
 };
